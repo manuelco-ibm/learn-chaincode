@@ -84,7 +84,7 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 }
 
 //Read function
-func (t*SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) ([]byte, error){
+func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) ([]byte, error){
 	var key, jsonResp string
 	var err error
 	if len(args) != 1 {
@@ -93,8 +93,8 @@ func (t*SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) (
 	key=args[0]
 	valAsbytes, err:=stub.GetState(key)
 	if err!=nil {
-		jsonResp ="{\"Error\":\"Failed to get for" + key + "\"}"
-			return nil, errors.New(jsonResp)
+		jsonResp ="{\"Error\":\"Failed to get state for " + key + "\"}"
+		return nil, errors.New(jsonResp)
 	}
 	return valAsbytes, nil
 }
